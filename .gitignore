@@ -9,7 +9,7 @@ html/*
 
 # track readme.md in the root (i.e. do NOT ignore it)
 !README.md
-
+!images
 # track Dockerfile
 !Dockerfile
 
