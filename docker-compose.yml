@@ -1,12 +1,14 @@
 version: '3.3'
-#IP is http://172.22.0.2 for some mysterius meaning
+#for IP see services' log "wordpress"  (172.19.0.2)
+#look for
+# " apache2: Could not reliably determine the server's fully qualified domain name, using x.x.x.x "
 services:
 
   wordpress:
     image: fchipi/wordpress-xdebug:v1.5.0
     restart: always
     ports:
-      - 8080:80
+      - 80:80
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: exampleuser
@@ -24,3 +26,18 @@ services:
       MYSQL_USER: exampleuser
       MYSQL_PASSWORD: examplepass
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db_data:/var/lib/mysql
+
+  adminer:
+    depends_on:
+      - db
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+volumes:
+   db_data:
+
+
+
