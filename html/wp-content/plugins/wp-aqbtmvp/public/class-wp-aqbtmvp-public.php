@@ -100,4 +100,9 @@ class Wp_Aqbtmvp_Public {
 
 	}
 
+	public function bugtracker_page_func(){
+		//include_once( 'partials/wp-aqbtmvp-public-display.php' );
+		// your Code here..
+		echo "shortcode is here";
+	}
 }
