@@ -114,14 +114,13 @@ class Wp_Aqbtmvp_Admin {
 			array($this, 'display_plugin_setup_page'),
 			"https://i.ibb.co/cQs3nRQ/screenshot-www-app-quality-com-2020-01.png",
 			);
-		/*
-		add_options_page(
+		add_submenu_page(
 			'AQ-bugTracker',
-			'AQ-bugTrackerMVC',
+			'dev-users',
+			'dev-users',
 			'manage_options',
-			$this->plugin_name,
-		);
-		*/
+			'dev-users',
+			array($this, 'display_plugin_setup_page_submenu_devusers'));
 	}
 
 	/**
@@ -148,6 +147,9 @@ class Wp_Aqbtmvp_Admin {
 	 */
 
 	public function display_plugin_setup_page() {
+		include_once( 'partials/wp-aqbtmvp-admin-display.php' );
+	}
+	public function display_plugin_setup_page_submenu_devusers() {
 		include_once( 'partials/wp-aqbtmvp-admin-display.php' );
 	}
 
