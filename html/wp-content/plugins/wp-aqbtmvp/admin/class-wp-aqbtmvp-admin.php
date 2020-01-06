@@ -1,15 +1,4 @@
 <?php
-
-/**
- * The admin-specific functionality of the plugin.
- *
- * @link       https://github.com/MaksymSharinDev
- * @since      1.0.0
- *
- * @package    Wp_Aqbtmvp
- * @subpackage Wp_Aqbtmvp/admin
- */
-
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -117,8 +106,8 @@ class Wp_Aqbtmvp_Admin {
 		 *
 		 */
 		add_options_page(
-			'WP Cleanup and Base Options Functions Setup',
-			'WP Cleanup',
+			'WP an MVP of a bugTracker',
+			'AQ-bugTrackerMVC',
 			'manage_options',
 			$this->plugin_name, array($this, 'display_plugin_setup_page')
 		);
@@ -148,7 +137,7 @@ class Wp_Aqbtmvp_Admin {
 	 */
 
 	public function display_plugin_setup_page() {
-		include_once( 'partials/wp-cbf-admin-display.php' );
+		include_once( 'partials/wp-aqbtmvp-admin-display.php' );
 	}
 
 }

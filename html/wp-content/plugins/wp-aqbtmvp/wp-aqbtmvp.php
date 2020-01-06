@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       AQ-Bug-Tracker-MVP
  * Plugin URI:        https://github.com/MaksymSharinDev/AQ-bugTracker-MVP-exercise
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Attempt to create an MVP bugtracker for AppQuality company as exercise
  * Version:           1.0.0
  * Author:            Maksym Sharin
  * Author URI:        https://github.com/MaksymSharinDev
