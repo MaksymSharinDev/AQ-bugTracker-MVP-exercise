@@ -28,6 +28,7 @@ html/wp-content/*
 html/wp-content/plugins/*
 !html/wp-content/plugins/plugin-name/
 !html/wp-content/plugins/wp-mvc/
+!html/wp-content/plugins/wp-aqbtmvp/
 # !html/wp-content/plugins/my-single-file-plugin.php
 # !html/wp-content/plugins/my-directory-plugin/
 
