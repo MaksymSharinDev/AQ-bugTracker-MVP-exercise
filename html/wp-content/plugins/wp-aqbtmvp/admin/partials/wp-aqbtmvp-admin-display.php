@@ -12,5 +12,11 @@
  * @subpackage Wp_Aqbtmvp/admin/partials
  */
 ?>
+<div class="wrap">
 
+    <h2><?php echo esc_html(get_admin_page_title()); ?></h2>
+
+    <p> Hello World, i'm am a plugin setting page, maks have done it we suppose</p>
+
+</div>
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->

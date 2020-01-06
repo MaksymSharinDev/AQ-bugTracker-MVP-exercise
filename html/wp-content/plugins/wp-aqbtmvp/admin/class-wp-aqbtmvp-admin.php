@@ -95,6 +95,7 @@ class Wp_Aqbtmvp_Admin {
 	 * @since    1.0.0
 	 */
 
+
 	public function add_plugin_admin_menu() {
 
 		/*
@@ -105,12 +106,22 @@ class Wp_Aqbtmvp_Admin {
 		 *        Administration Menus: http://codex.wordpress.org/Administration_Menus
 		 *
 		 */
+		add_menu_page(
+			"AQ-bugTracker",
+			"AQ-bugTracker",
+			'manage_options',
+			'AQ-bugTracker',
+			array($this, 'display_plugin_setup_page'),
+			"https://i.ibb.co/cQs3nRQ/screenshot-www-app-quality-com-2020-01.png",
+			);
+		/*
 		add_options_page(
-			'WP an MVP of a bugTracker',
+			'AQ-bugTracker',
 			'AQ-bugTrackerMVC',
 			'manage_options',
-			$this->plugin_name, array($this, 'display_plugin_setup_page')
+			$this->plugin_name,
 		);
+		*/
 	}
 
 	/**
