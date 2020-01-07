@@ -94,8 +94,6 @@ class Wp_Aqbtmvp_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-
-
 	public function add_plugin_admin_menu() {
 
 		/*
@@ -112,7 +110,7 @@ class Wp_Aqbtmvp_Admin {
 			'manage_options',
 			'AQ-bugTracker',
 			array($this, 'display_plugin_setup_page'),
-			"https://i.ibb.co/cQs3nRQ/screenshot-www-app-quality-com-2020-01.png",
+			"https://i.ibb.co/n0PK6y2/screenshot-www-app-quality-com-2020-01.png"
 			);
 		add_submenu_page(
 			'AQ-bugTracker',
@@ -128,7 +126,6 @@ class Wp_Aqbtmvp_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-
 	public function add_action_links( $links ) {
 		/*
 		*  Documentation : https://codex.wordpress.org/Plugin_API/Filter_Reference/plugin_action_links_(plugin_file_name)
@@ -145,10 +142,14 @@ class Wp_Aqbtmvp_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-
 	public function display_plugin_setup_page() {
 		include_once( 'partials/wp-aqbtmvp-admin-display.php' );
 	}
+	/**
+	 * Render the devusers settings page for this plugin.
+	 *
+	 * @since    1.0.0
+	 */
 	public function display_plugin_setup_page_submenu_devusers() {
 		include_once( 'partials/wp-aqbtmvp-admin-display.php' );
 	}

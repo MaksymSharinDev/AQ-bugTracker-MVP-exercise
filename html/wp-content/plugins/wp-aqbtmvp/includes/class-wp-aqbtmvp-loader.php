@@ -40,6 +40,7 @@ class Wp_Aqbtmvp_Loader {
 	 * @var      array    $filters    The filters registered with WordPress to fire when the plugin loads.
 	 */
 	protected $filters;
+
 	/**
 	 * The array of shortcodes registered with WordPress.
 	 *
@@ -48,6 +49,7 @@ class Wp_Aqbtmvp_Loader {
 	 * @var      array    $shortcodes    The $shortcodes; registered with WordPress to register when the plugin loads.
 	 */
 	protected $shortcodes;
+
 	/**
 	 * Initialize the collections used to maintain the actions and filters.
 	 *

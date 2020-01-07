@@ -28,5 +28,56 @@
 	 * Although scripts in the WordPress core, Plugins and Themes may be
 	 * practising this, we should strive to set a better example in our own work.
 	 */
+	$( document ).ready(
+		function () {
+			console.log($('#send-bug'));
+			$('#send-bug').click(
+				function ( )
+				{
+
+					let Data = {};
+
+					$('.form-control').each(
+						(i) =>
+						{
+							//console.log( $ ( $('.form-control')[i] ).attr( 'placeholder'));
+							Data
+								[
+								$($('.form-control')[i])
+								.attr( 'placeholder')
+								]
+								= $($('.form-control')[i]).val();
+
+						}
+					);
+					/*
+					WE NEED TO ADD THIS CODE SOMEWHERE:
+
+					<?php
+					if(!empty($_POST ))
+					{
+						$data = array();
+						foreach( $_POST as $key => $value)
+						{
+							$data[$key]=$value;
+						}
+						wp_send_json(json_encode($data));
+					}
+					 */
+					url='';
+					$.post(
+						url,
+						Data,
+						(returnData) =>
+						{
+							console.log('success');
+							console.log(returnData);
+						}
+					);
+
+				}
+			)
+		}
+	);
 
 })( jQuery );
