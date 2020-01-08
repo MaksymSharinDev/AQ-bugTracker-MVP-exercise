@@ -13,7 +13,9 @@
  */
 ?>
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
-
+<script>
+    var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+</script>
 <div class="container">
 	<!-- Stack the columns on mobile by making one full-width and the other half-width -->
 	<div class="row">

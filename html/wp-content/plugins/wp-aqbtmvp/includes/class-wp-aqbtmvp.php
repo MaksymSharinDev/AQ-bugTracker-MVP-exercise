@@ -183,6 +183,10 @@ class Wp_Aqbtmvp {
 
 		$this->loader->add_shortcode( 'bugtracker_page', $plugin_public, 'bugtracker_page_func' );
 
+		$this->loader->add_action('wp_ajax_nopriv_insert_bug',$plugin_public,'insert_bug');
+		$this->loader->add_action('wp_ajax_insert_bug',$plugin_public,'insert_bug');
+
+
 	}
 
 	/**

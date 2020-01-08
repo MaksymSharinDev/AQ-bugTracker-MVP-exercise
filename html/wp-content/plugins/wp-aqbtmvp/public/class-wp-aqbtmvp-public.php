@@ -105,4 +105,18 @@ class Wp_Aqbtmvp_Public {
 		include_once( 'partials/'.$this->plugin_name.'-public-display.php' );
 		return ob_get_clean();
 	}
+
+	public function insert_bug ()
+	{
+
+		if(!empty($_REQUEST ))
+		{
+			$data = array();
+			foreach( $_REQUEST as $key => $value)
+			{
+				$data[$key]=$value;
+			}
+			wp_send_json(json_encode($data));
+		}
+	}
 }

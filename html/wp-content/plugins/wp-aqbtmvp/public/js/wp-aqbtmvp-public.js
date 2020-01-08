@@ -50,28 +50,14 @@
 
 						}
 					);
-					/*
-					WE NEED TO ADD THIS CODE SOMEWHERE:
-
-					<?php
-					if(!empty($_POST ))
-					{
-						$data = array();
-						foreach( $_POST as $key => $value)
-						{
-							$data[$key]=$value;
-						}
-						wp_send_json(json_encode($data));
-					}
-					 */
-					url='';
+					Data.action='insert_bug';
 					$.post(
-						url,
+						ajaxurl,
 						Data,
 						(returnData) =>
 						{
 							console.log('success');
-							console.log(returnData);
+							console.log(JSON.parse(returnData));
 						}
 					);
 
