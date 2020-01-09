@@ -39,8 +39,8 @@ class Wp_Aqbtmvp_Activator {
 		#Check to see if the table exists already, if not, then create it
 
 		if ( $wpdb->get_var( "show tables like '$wp_track_table'" ) != $wp_track_table ) {
-			//date,device,replicability,severity,expected_result,actual_result
-			$sql = "CREATE TABLE " . $wp_track_table . " ( ";
+			//id,title,date,device,replicability,severity,expected_result,actual_result
+			$sql  = "  CREATE TABLE " . $wp_track_table . " ( ";
 			$sql .= "  id  int(11)   NOT NULL auto_increment, ";
 			$sql .= "  title  tinytext NOT NULL, ";
 			$sql .= "  date  tinytext NOT NULL, ";

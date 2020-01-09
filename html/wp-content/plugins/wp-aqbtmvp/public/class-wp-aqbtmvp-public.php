@@ -109,14 +109,30 @@ class Wp_Aqbtmvp_Public {
 	public function insert_bug ()
 	{
 
+		//date,device,replicability,severity,expected_result,actual_result
+
+
 		if(!empty($_REQUEST ))
 		{
 			$data = array();
 			foreach( $_REQUEST as $key => $value)
 			{
-				$data[$key]=$value;
+				$key = str_replace(' ', '_', $key);
+				$key = strtolower ($key);
+				if($key!='action'){
+					$data[$key]=$value;
+				}
 			}
-			wp_send_json(json_encode($data));
+			global $table_prefix, $wpdb;
+
+				 $res = $wpdb->insert($wpdb->prefix  . "bugs", $data );
+				//echo $wpdb->last_error;
+				//var_dump($data);
+				wp_send_json(json_encode($data));
+			//echo json_encode(array('success' => $res, 'error' => $wpdb->last_error));
+			//die();
+
+
 		}
 	}
 }
