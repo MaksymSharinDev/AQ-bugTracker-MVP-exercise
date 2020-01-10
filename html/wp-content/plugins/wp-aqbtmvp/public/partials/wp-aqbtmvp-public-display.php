@@ -60,36 +60,38 @@
 <div class="container">
         <!--- table table-striped table-dark --->
 
-        <table class="table table-hover">
+    <table  class="table">
             <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Bugs</th>
             </tr>
             </thead>
+            <tbody id='bugList'>
+                <tr hidden scope="row">
+                        <td>
+                            <table class="table-dark ">
+                                <tr>
+                                    <td class="tg-lboi">id</td>
+                                    <td class="tg-0pky" colspan="3">title</td>
+                                    <td class="tg-0pky" colspan="2">date</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-0lax" colspan="2">device</td>
+                                    <td class="tg-0lax" colspan="2">replicability</td>
+                                    <td class="tg-0lax" colspan="2">severity</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-0lax" colspan="3">expected_result</td>
+                                    <td class="tg-0lax" colspan="3">actual_result</td>
+                                </tr>
+                            </table>
+                        </td>
+
+                </tr>
+
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
-            </tbody>
-        </table>
+    </table>
+
 
     </div>
 

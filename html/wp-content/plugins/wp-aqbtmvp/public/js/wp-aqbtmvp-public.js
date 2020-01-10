@@ -30,7 +30,6 @@
 	 */
 	$( document ).ready(
 		function () {
-			console.log($('#send-bug'));
 			$('#send-bug').click(
 				function ( )
 				{
@@ -54,15 +53,50 @@
 					$.post(
 						ajaxurl,
 						Data,
-						(returnData) =>
+						() =>
 						{
-							console.log('success');
-							console.log(JSON.parse(returnData));
+							updateClientData();
 						}
 					);
 
 				}
-			)
+			);
+			function updateClientData()
+			{
+				let Data = {};
+				Data.action='get_bugs';
+				$.post(
+					ajaxurl,
+					Data,
+					(Data) =>
+					{
+						Data = JSON.parse(Data);
+						console.log(Data);
+						genTable(Data);
+					}
+				);
+
+				function genTable(Data)
+				{
+					let Template = $('tr[hidden]')[0];
+					let HTMLrow = document.createElement(Template.tagName);
+					HTMLrow.innerHTML=Template.innerHTML;
+					HTMLrow.removeAttribute('hidden');
+					HTMLrow.id='newElement';
+					let x;
+					$('#bugList').append(HTMLrow);
+					$.each
+					(Data,
+						(Key , value)=>
+						{
+
+							x= $('#newElement').find("td:contains("+Key+")")[1];
+							$(x).text(value);
+						}
+					);
+					$('#newElement').removeAttr('id');
+				}
+			}
 		}
 	);
 

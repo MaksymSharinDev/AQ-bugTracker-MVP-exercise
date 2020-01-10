@@ -20,6 +20,7 @@
  * @subpackage Wp_Aqbtmvp/public
  * @author     Maksym Sharin <Maksym.sharin.work@gmail.com>
  */
+
 class Wp_Aqbtmvp_Public {
 
 	/**
@@ -108,31 +109,29 @@ class Wp_Aqbtmvp_Public {
 
 	public function insert_bug ()
 	{
-
-		//date,device,replicability,severity,expected_result,actual_result
-
-
-		if(!empty($_REQUEST ))
-		{
+		//id,date,device,replicability,severity,expected_result,actual_result
 			$data = array();
+
 			foreach( $_REQUEST as $key => $value)
 			{
 				$key = str_replace(' ', '_', $key);
 				$key = strtolower ($key);
-				if($key!='action'){
-					$data[$key]=$value;
-				}
+				$data[$key]=$value;
 			}
+			unset($data['action']);
+
 			global $table_prefix, $wpdb;
-
-				 $res = $wpdb->insert($wpdb->prefix  . "bugs", $data );
-				//echo $wpdb->last_error;
-				//var_dump($data);
+				$wpdb->insert($wpdb->prefix  . "bugs", $data );
 				wp_send_json(json_encode($data));
-			//echo json_encode(array('success' => $res, 'error' => $wpdb->last_error));
-			//die();
-
-
-		}
 	}
+	public function  get_bugs()
+	{
+
+		global $wpdb;
+		//$wpdb->insert($wpdb->prefix  . "bugs", $data );
+		$table=$wpdb->prefix."bugs";
+		$data = $wpdb->get_row( "SELECT * FROM " . $table, ARRAY_A );
+		wp_send_json(json_encode($data));
+	}
+
 }
