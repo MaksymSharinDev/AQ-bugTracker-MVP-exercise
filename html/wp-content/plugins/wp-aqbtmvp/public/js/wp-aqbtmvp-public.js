@@ -29,18 +29,13 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
-
-
 	$( document ).ready(
 		()=>
 			{
-				//ottieni dati recenti
-				//poi aspetta eventuE6 ali click
-				//al click ottieni dati ( magari dicendo quali deve escludere dalla richiesta);
-				//piazza i dati ottenuti
 				pageIO();
 
-				function pageIO( AlreadyOnPageID = [] ){
+				function pageIO( AlreadyOnPageID = [] )
+				{
 					console.log('IO start: ');
 					readDB(AlreadyOnPageID).then(
 						(readData)=>
@@ -59,10 +54,7 @@
 
 					);
 				}
-
-
-
-				function readDB(AlreadyOnPageID)
+				function readDB( AlreadyOnPageID )
 				{
 					console.log('start rDB function');
 					return new Promise(
@@ -95,18 +87,9 @@
 						}
 						);
 				}
-
 				function genTable ( rows )
 				{
 					console.log('start table');
-					/*
-					$().each(
-						rows,
-						(index , value)=>
-						{
-							console('inside each');
-							placeRecord(value);
-						});*/
 						for( let record in rows)
 						{
 							console.log('rows:', rows);
@@ -114,7 +97,6 @@
 						}
 					console.log('end table');
 				}
-
 				function placeRecord( record )
 				{
 					console.log('bug placing start');
@@ -142,8 +124,8 @@
 					$('#newElement').removeAttr('id');
 					console.log('bug placing end');
 				}
-
-				function waitClick(AlreadyOnPageID) {
+				function waitClick( AlreadyOnPageID )
+				{
 					return new Promise(
 						(resolve)=>
 						{
@@ -178,135 +160,6 @@
 					);
 
 				}
-				/*
-				let bugPageObj;
-				bugPageObj = bugPage();
-				bugPageObj.updateClientData(bugPageObj).then(
-					(THIS) =>
-					{
-						bugPageObj.genTable(THIS);
-					}
-				);
-				class bugPage{
-
-					dbRows = {};
-					Data = {};
-					dataContainer = {};
-					AlreadyOnPageIDs = [];
-
-
-					Constructor(cssClassSelector = '.form-control' ,
-								AttrName = 'placeholder',
-								dataPull = { wpAction : 'get_bugs' },
-								dataPush = { wpAction : 'insert_bug' }
-					)
-					{
-
-						this.dataContainer.cssClassSelector = cssClassSelector; //'.form-control';
-						this.dataContainer.AttrName = AttrName; //'placeholder';
-						this.dataContainer.dataPull = dataPull;
-						this.dataContainer.dataPush = dataPush;
-
-						//this.forEach( (index , value) => { value.bind(this)})
-					}
-
-					updateClientData ( THIS )
-					{
-						//TODO
-						//dobbiamo implementare un meccanismo
-						//che coinvolga AlreadyOnPageIDs per
-						//indicare al backend quali righe escludere
-						//dall'invio al frontend, cosi evitiamo cicli di elaborazione
-						//al codice client-side
-						this.Data.action = THIS.dataContainer.dataPull.wpAction;
-						return new Promise(
-							( resolve )=>
-							{
-								$.post(
-									ajaxurl,
-									THIS.Data,
-									(rows) =>
-									{
-										rows = JSON.parse(rows);
-										THIS.dbRows = rows;
-										$.each(
-											rows,
-											(Key , value) =>
-											{
-												THIS.AlreadyOnPageIDs.push(value.id);
-											}
-										);
-										resolve(()=> { return this });
-									}
-								);
-							}
-						);
-					}
-
-
-					waitClick ()
-					{
-
-					}
-
-					/*
-                            idIsNew( idValue )
-                            {
-                                $.each(
-                                    this.AlreadyOnPageIDs,
-                                    (key , value) =>
-                                    {
-                                        if( idValue == value)
-                                        {
-                                            console.log("idValue: ",idValue);
-                                            console.log("value: ",value);
-                                            return false;
-                                        }
-                                    }
-                                );
-                                return true;
-                            }
-
-                            newBug(
-                                wpActionName = 'insert_bug' ,
-                                clickElementId = '#send-bug'
-                            )
-                            {
-                                $(clickElementId).click(
-                                    function ( )
-                                    {
-                                        this.Data.action = wpActionName;
-                                        $.post(
-                                            ajaxurl,
-                                            Data,
-                                            () =>
-                                            {
-                                                //return promise
-                                            }
-                                        );
-
-                                    }
-                                );
-                            }
-
-                            getInputData(dataNode,dataName)
-                            {
-                                $(dataNode).each(
-                                    (i) =>
-                                    {
-                                        this.Data
-                                            [
-                                            $($(dataNode)[i])
-                                                .attr( dataName )
-                                            ]
-                                            = $($(dataNode)[i]).val();
-                                        console.log(  )
-                                    }
-                                );
-                            }
-
-
-				} */
 			}
 	)
 
