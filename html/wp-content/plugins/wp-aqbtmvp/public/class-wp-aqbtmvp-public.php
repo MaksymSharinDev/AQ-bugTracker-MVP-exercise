@@ -130,7 +130,26 @@ class Wp_Aqbtmvp_Public {
 		global $wpdb;
 		//$wpdb->insert($wpdb->prefix  . "bugs", $data );
 		$table=$wpdb->prefix."bugs";
-		$data = $wpdb->get_row( "SELECT * FROM " . $table, ARRAY_A );
+		$sqlString = "SELECT * FROM " . $table;
+		$Array= $_REQUEST['AlreadyOnPageID'];
+		if ( isset($Array) && count($Array) > 0  )
+		{
+			$sqlString .= ' WHERE id NOT IN (';
+			foreach ( $Array as $key => $ID )
+			{
+				$sqlString .= $ID;
+                if( $key < (count($Array)-1) )
+                {
+	                $sqlString .= ',';
+                }
+
+			}
+			$sqlString .= ')' ;
+		}
+
+		$data = $wpdb->get_results( $sqlString , ARRAY_A );
+
+
 		wp_send_json(json_encode($data));
 	}
 

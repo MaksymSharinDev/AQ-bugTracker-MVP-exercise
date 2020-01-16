@@ -66,7 +66,7 @@
                 <th scope="col">Bugs</th>
             </tr>
             </thead>
-            <tbody id='bugList'>
+            <tbody id='bugList' class="overflow-auto">
                 <tr hidden scope="row">
                         <td>
                             <table class="table-dark ">
