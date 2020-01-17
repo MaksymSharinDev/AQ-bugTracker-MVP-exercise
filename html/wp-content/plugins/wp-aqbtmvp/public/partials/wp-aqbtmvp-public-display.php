@@ -29,7 +29,7 @@
                 <input class="form-control form-control-lg" type="text" placeholder="date">
             </div>
         </div>
-
+    <div style="height: 5px;"></div>
         <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
         <div class="row">
             <div class="col-6 col-md-4">
@@ -42,7 +42,7 @@
                 <input class="form-control form-control-lg" type="text" placeholder="severity">
             </div>
         </div>
-
+    <div style="height: 5px;"></div>
         <!-- Columns are always 50% wide, on mobile and desktop -->
         <div class="row">
             <div class="col-6">
@@ -55,8 +55,17 @@
 
         <div style="height: 10px;"></div>
 
-        <button id='send-bug' type="button" class="btn btn-secondary btn-lg btn-block">Send Bug</button>
+    <div class="row">
+        <div class="col-8">
+            <button id='send-bug' type="button" class="btn btn-secondary btn-lg btn-block">Send Bug</button>
+        </div>
+        <div class="col-4">
+            <button id='ask-delete-bug' type="button" class="btn btn-secondary btn-lg btn-danger btn-block">Delete Bugs</button>
+        </div>
     </div>
+
+    </div>
+<div style="height: 20px;"></div>
 <div class="container">
         <!--- table table-striped table-dark --->
 

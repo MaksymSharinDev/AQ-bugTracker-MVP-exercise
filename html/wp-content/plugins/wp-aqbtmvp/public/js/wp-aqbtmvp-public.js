@@ -41,7 +41,7 @@
 						(readData)=>
 						{
 							genTable(readData.dbRows );
-							waitClick (readData.AlreadyOnPageID)
+							insertBugWaitClick (readData.AlreadyOnPageID)
 								.then(
 									(AlreadyOnPageID) =>
 									{
@@ -53,6 +53,7 @@
 						}
 
 					);
+
 				}
 				function readDB( AlreadyOnPageID )
 				{
@@ -124,15 +125,16 @@
 					$('#newElement').removeAttr('id');
 					console.log('bug placing end');
 				}
-				function waitClick( AlreadyOnPageID )
+				function insertBugWaitClick( AlreadyOnPageID )
 				{
 					return new Promise(
 						(resolve)=>
 						{
 							console.log('Waiting click...');
 							$('#send-bug').click(
-								( ) =>
+								() =>
 								{
+									$('#send-bug').off('click');
 									console.log('Click!');
 									let Data = {};
 									$('.form-control').each(
@@ -145,6 +147,7 @@
 												]
 												= $($('.form-control')[i]).val();
 										}
+
 									);
 									Data.action ='insert_bug';
 									$.post(
@@ -156,11 +159,18 @@
 										}
 									);
 								});
+
+
 						}
 					);
 
 				}
+				function deleteBugWaitClick()
+				{
+
+				}
 			}
+
 	)
 
 })( jQuery );
