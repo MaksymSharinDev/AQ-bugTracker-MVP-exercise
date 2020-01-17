@@ -188,6 +188,9 @@ class Wp_Aqbtmvp {
 		$this->loader->add_action('wp_ajax_nopriv_get_bugs',$plugin_public,'get_bugs');
 		$this->loader->add_action('wp_ajax_get_bugs',$plugin_public,'get_bugs');
 
+		$this->loader->add_action('wp_ajax_nopriv_delete_bug',$plugin_public,'delete_bug');
+		$this->loader->add_action('wp_ajax_delete_bug',$plugin_public,'delete_bug');
+
 	}
 
 	/**

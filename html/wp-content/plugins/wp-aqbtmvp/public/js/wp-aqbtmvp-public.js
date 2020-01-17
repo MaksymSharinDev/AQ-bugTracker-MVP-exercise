@@ -37,25 +37,43 @@
 				function pageIO( AlreadyOnPageID = [] )
 				{
 					console.log('IO start: ');
-					readDB(AlreadyOnPageID).then(
+					readDBdata(AlreadyOnPageID).then(
 						(readData)=>
 						{
 							genTable(readData.dbRows );
-							insertBugWaitClick (readData.AlreadyOnPageID)
+
+							deleteBugWaitClick( readData.AlreadyOnPageID ).then(
+								(obj)=>
+								{
+									let idToDelete = obj.idToDelete;
+									let AlreadyOnPageID = obj.AlreadyOnPageID;
+									deleteDBdata(idToDelete).then(
+										idToDelete => removeRecord(idToDelete)
+									)
+									.catch(
+										Exc => {
+											console.log(Exc);
+										}
+									)
+								}
+								);
+							//REACTIVATE
+							insertBugWaitClick ( readData.AlreadyOnPageID )
 								.then(
 									(AlreadyOnPageID) =>
 									{
 										console.log('start another: ', pageIO);
-										pageIO(AlreadyOnPageID)
+										pageIO(AlreadyOnPageID);
 									}
 
 								);
+
 						}
 
 					);
 
 				}
-				function readDB( AlreadyOnPageID )
+				function readDBdata( AlreadyOnPageID )
 				{
 					console.log('start rDB function');
 					return new Promise(
@@ -165,9 +183,91 @@
 					);
 
 				}
-				function deleteBugWaitClick()
+				function deleteBugWaitClick( AlreadyOnPageID )
 				{
+					return new Promise(
+						(resolve)=>
+						{
+							//
+							$('#delete-bug').click(
+							() =>
+							{
+								$('#delete-bug').off('click');
 
+								console.log( 'Delete start' );
+
+								//console.log( $('#bugList') );
+								$('.table-dark').click(
+									( e )=>
+									{
+										$('.table-dark').off('click');
+										let clicksTable = e.currentTarget;
+										let idToDelete = clicksTable.children[0].children[0].children[0].innerHTML;
+										/*
+											console.log(
+												$(clicksTable).find('.table-dark')
+											);
+										*/
+										console.log(idToDelete);
+										$('#delete-bug').click(
+											( )=>
+											{
+												$('#delete-bug').off('click');
+												$('.table-dark').off('click');
+
+												console.log( 'Delete End' );
+												resolve({
+													'AlreadyOnPageID': AlreadyOnPageID ,
+													'idToDelete' : idToDelete}
+													);
+
+											});
+									});
+
+
+								//aspetta un'altro click su un record
+								//ottenuto quel click ritorna l'id
+							});
+						});
+				}
+				function deleteDBdata(idToDelete)
+				{
+					return new Promise(
+						(resolve,reject)=>
+						{
+							//fai una richiesta al backend
+							let Data = {};
+							Data.action = 'delete_bug' ;
+							Data.id = idToDelete;
+							$.post(
+								ajaxurl,
+								Data,
+								( response ) =>
+								{
+									let nrows = JSON.parse(response).nrows;
+									console.log('nrows is not false: ',  );
+									if (typeof nrows == 'number'
+										&& nrows > 0
+									)
+									{
+										resolve(idToDelete);
+									}
+									else
+									{
+										console.log('record to delete not present in the DB');
+										reject( );
+									}
+								}
+							);
+
+						});
+					//ottieni la conferma che dal backEnd che è stato eliminato il record
+				}
+				function removeRecord(idToDelete)
+				{
+					//rimuovi il nodo con quel id dal frontend
+					console.log('start frontend record delete');
+					console.log('idToDelete value :',idToDelete);
 				}
 			}
 

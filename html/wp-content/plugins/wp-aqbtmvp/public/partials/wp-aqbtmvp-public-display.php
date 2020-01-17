@@ -60,7 +60,7 @@
             <button id='send-bug' type="button" class="btn btn-secondary btn-lg btn-block">Send Bug</button>
         </div>
         <div class="col-4">
-            <button id='ask-delete-bug' type="button" class="btn btn-secondary btn-lg btn-danger btn-block">Delete Bugs</button>
+            <button id='delete-bug' type="button" class="btn btn-secondary btn-lg btn-danger btn-block">Delete Bugs</button>
         </div>
     </div>
 
@@ -76,7 +76,8 @@
             </tr>
             </thead>
             <tbody id='bugList' class="overflow-auto">
-                <tr hidden scope="row">
+                <tr hidden scope="row"
+                >
                         <td>
                             <table class="table-dark ">
                                 <tr>

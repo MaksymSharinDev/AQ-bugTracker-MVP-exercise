@@ -128,7 +128,6 @@ class Wp_Aqbtmvp_Public {
 	{
 
 		global $wpdb;
-		//$wpdb->insert($wpdb->prefix  . "bugs", $data );
 		$table=$wpdb->prefix."bugs";
 		$sqlString = "SELECT * FROM " . $table;
 		$Array= $_REQUEST['AlreadyOnPageID'];
@@ -151,6 +150,19 @@ class Wp_Aqbtmvp_Public {
 
 
 		wp_send_json(json_encode($data));
+	}
+
+	public function delete_bug(){
+		global $wpdb;
+		$nrows =
+		$wpdb->delete( $wpdb->prefix . "bugs" , array( 'ID' => $_REQUEST['id']) );
+
+		wp_send_json(
+			json_encode(
+				array( 'nrows' => $nrows )
+			)
+		);
+
 	}
 
 }
