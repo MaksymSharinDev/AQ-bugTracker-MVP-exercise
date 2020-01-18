@@ -52,8 +52,9 @@
 											.then(
 												(idToDelete,AlreadyOnPageID)=>
 												{
-													removeRecord(idToDelete);
-													return new Promise(resolve => resolve(AlreadyOnPageID));
+													removeRecord(obj.nodeToDelete).then(
+														() => {return new Promise(resolve => resolve(AlreadyOnPageID))}
+													);
 												}
 											)
 											.catch(
@@ -213,16 +214,17 @@
 										let clicksTable = e.currentTarget;
 										let idToDelete = clicksTable.children[0].children[0].children[0].innerHTML;
 										console.log(idToDelete);
-
 										$('#delete-bug').click(
 											( )=>
 											{
 												$('#delete-bug').off('click');
 
 												console.log( 'Delete End' );
+												console.log( 'node to pass ', clicksTable );
 												resolve({
 													'AlreadyOnPageID': AlreadyOnPageID ,
-													'idToDelete' : idToDelete}
+													'idToDelete' : idToDelete,
+													'nodeToDelete' : clicksTable}
 													);
 
 											});
@@ -265,11 +267,17 @@
 						});
 					//ottieni la conferma che dal backEnd che è stato eliminato il record
 				}
-				function removeRecord(idToDelete)
+				function removeRecord(node)
 				{
 					//rimuovi il nodo con quel id dal frontend
 					console.log('start frontend record delete');
-					console.log('idToDelete value :',idToDelete);
+					console.log('node value :',node);
+					return new Promise(resolve =>
+					{
+						$(node).remove();
+						console.log('end frontend record delete');
+						resolve();
+					})
 				}
 			}
 
