@@ -1,6 +1,6 @@
-#MVP bug tracker web application Exercise
+# MVP bug tracker web application Exercise
 
-##Technology stack:
+## Technology stack:
  * LAMP
  * WordPress 
     - [plugins]
