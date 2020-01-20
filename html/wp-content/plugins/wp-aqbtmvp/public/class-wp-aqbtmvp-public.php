@@ -120,7 +120,7 @@ class Wp_Aqbtmvp_Public {
 			}
 			unset($data['action']);
 
-			global $table_prefix, $wpdb;
+			global $wpdb;
 				$wpdb->insert($wpdb->prefix  . "bugs", $data );
 				wp_send_json(json_encode($data));
 	}
@@ -151,7 +151,6 @@ class Wp_Aqbtmvp_Public {
 
 		wp_send_json(json_encode($data));
 	}
-
 	public function delete_bug(){
 		global $wpdb;
 		$nrows =
@@ -163,6 +162,25 @@ class Wp_Aqbtmvp_Public {
 			)
 		);
 
+	}
+	public function update_bug(){
+		//id,date,device,replicability,severity,expected_result,actual_result
+		$data = array();
+
+		foreach( $_REQUEST as $key => $value)
+		{
+			$key = str_replace(' ', '_', $key);
+			$key = strtolower ($key);
+			$data[$key]=$value;
+		}
+		$id=$data['id'];
+		unset($data['action']);
+		unset($data['id']);
+
+		global $wpdb;
+		$result=$wpdb->update($wpdb->prefix  . "bugs", $data , ['id' => $id ] );
+
+		wp_send_json(json_encode($result));
 	}
 
 }

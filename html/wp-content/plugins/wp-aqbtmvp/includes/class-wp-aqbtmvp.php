@@ -185,12 +185,15 @@ class Wp_Aqbtmvp {
 
 		$this->loader->add_action('wp_ajax_nopriv_insert_bug',$plugin_public,'insert_bug');
 		$this->loader->add_action('wp_ajax_insert_bug',$plugin_public,'insert_bug');
+
 		$this->loader->add_action('wp_ajax_nopriv_get_bugs',$plugin_public,'get_bugs');
 		$this->loader->add_action('wp_ajax_get_bugs',$plugin_public,'get_bugs');
 
 		$this->loader->add_action('wp_ajax_nopriv_delete_bug',$plugin_public,'delete_bug');
 		$this->loader->add_action('wp_ajax_delete_bug',$plugin_public,'delete_bug');
-
+		//update_bug
+		$this->loader->add_action('wp_ajax_nopriv_update_bug',$plugin_public,'update_bug');
+		$this->loader->add_action('wp_ajax_update_bug',$plugin_public,'update_bug');
 	}
 
 	/**

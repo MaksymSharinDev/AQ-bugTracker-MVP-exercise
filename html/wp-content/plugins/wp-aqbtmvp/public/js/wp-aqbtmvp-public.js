@@ -35,7 +35,7 @@
 				var AlreadyOnPageID = [];
 				pageIO();
 
-				function pageIO(  )
+				function pageIO( )
 				{
 					console.log('IO start: ');
 					readDBdata().then(
@@ -68,7 +68,8 @@
 												}
 											);
 										}
-									)
+									),
+									updateBugWaitClick()
 							])
 							.then(
 							() =>
@@ -84,7 +85,7 @@
 					);
 
 				}
-				function readDBdata(  )
+				function readDBdata( )
 				{
 					console.log('start rDB function');
 					return new Promise(
@@ -194,6 +195,7 @@
 					);
 
 				}
+
 				function deleteBugWaitClick(  )
 				{
 					return new Promise(
@@ -213,6 +215,8 @@
 									{
 										$('.table-dark').off('click');
 										let clicksTable = e.currentTarget;
+
+
 										let idToDelete = clicksTable.children[0].children[0].children[0].innerHTML;
 										console.log(idToDelete);
 										$('#delete-bug').click(
@@ -278,6 +282,47 @@
 						console.log('end frontend record delete');
 						resolve();
 					})
+				}
+
+				function updateBugWaitClick()
+				{
+					return new Promise(
+						(resolve)=>
+						{
+							$('#update-bug').click(
+								() =>
+								{
+									console.log('Click!');
+									let Data = {};
+									$('.form-control').each(
+										(i) =>
+										{
+											Data
+												[
+												$($('.form-control')[i])
+													.attr( 'placeholder' )
+												]
+												= $($('.form-control')[i]).val();
+										}
+									);
+									Data ['id'] = $('[placeholder="id"]').val();
+									Data.action ='update_bug';
+									$.post(
+										ajaxurl,
+										Data,
+										() =>
+										{
+											$('#update-bug').off('click');
+											location.reload();
+											resolve();
+										}
+									);
+								});
+
+
+						}
+					);
+
 				}
 			}
 

@@ -56,13 +56,18 @@
         <div style="height: 10px;"></div>
 
     <div class="row">
-        <div class="col-8">
+        <div class="col-4">
             <button id='send-bug' type="button" class="btn btn-secondary btn-lg btn-block">Send Bug</button>
+        </div>
+        <div class="col-4">
+            <button id='update-bug' type="button" class="btn btn-secondary btn-lg btn-info btn-block">Update Bug</button>
+            <input class="form-control form-control-lg" type="text" placeholder="id">
         </div>
         <div class="col-4">
             <button id='delete-bug' type="button" class="btn btn-secondary btn-lg btn-danger btn-block">Delete Bugs</button>
         </div>
     </div>
+
 
     </div>
 <div style="height: 20px;"></div>
