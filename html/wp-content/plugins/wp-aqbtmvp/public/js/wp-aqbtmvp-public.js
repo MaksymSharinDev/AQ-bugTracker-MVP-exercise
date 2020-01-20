@@ -213,7 +213,7 @@
 									$(this).off("click");
 								});
 								console.log( 'Delete start' );
-
+								$('body').css('cursor' , 'crosshair');
 								//console.log( $('#bugList') );
 								$('.table-dark').click(
 									( e )=>
@@ -228,7 +228,7 @@
 											( )=>
 											{
 												$('#delete-bug').off('click');
-
+												$('body').css('cursor', '');
 												console.log( 'Delete End' );
 												console.log( 'node to pass ', clicksTable );
 												resolve({
