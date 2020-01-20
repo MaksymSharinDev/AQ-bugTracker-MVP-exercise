@@ -119,7 +119,7 @@ class Wp_Aqbtmvp_Public {
 				$data[$key]=$value;
 			}
 			unset($data['action']);
-
+			unset($data['id']);
 			global $wpdb;
 				$wpdb->insert($wpdb->prefix  . "bugs", $data );
 				wp_send_json(json_encode($data));

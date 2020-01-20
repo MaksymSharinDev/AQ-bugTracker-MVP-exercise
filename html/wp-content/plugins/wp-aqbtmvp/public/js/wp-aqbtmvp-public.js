@@ -33,15 +33,17 @@
 		()=>
 			{
 				var AlreadyOnPageID = [];
+				var idToUpdate;
 				pageIO();
-
 				function pageIO( )
 				{
 					console.log('IO start: ');
+
 					readDBdata().then(
 						(readData)=>
 						{
 							genTable(readData.dbRows );
+
 							Promise.race([
 									insertBugWaitClick (  ) ,
 
@@ -69,7 +71,8 @@
 											);
 										}
 									),
-									updateBugWaitClick()
+									updateBugWaitClick(),
+								trackClickedID()
 							])
 							.then(
 							() =>
@@ -206,7 +209,9 @@
 							() =>
 							{
 								$('#delete-bug').off('click');
-
+								$("body").find("*").each(function() {
+									$(this).off("click");
+								});
 								console.log( 'Delete start' );
 
 								//console.log( $('#bugList') );
@@ -289,11 +294,11 @@
 					return new Promise(
 						(resolve)=>
 						{
+							let Data = {};
 							$('#update-bug').click(
 								() =>
 								{
-									console.log('Click!');
-									let Data = {};
+
 									$('.form-control').each(
 										(i) =>
 										{
@@ -324,7 +329,48 @@
 					);
 
 				}
+				function trackClickedID()
+				{
+					return new Promise(
+						resolve => {
+							$('.table-dark').click(
+								( e )=> {
+									$('.table-dark').off('click');
+									console.log('tracking table of click...');
+									let clicksTable = e.currentTarget;
+									idToUpdate = clicksTable.children[0].children[0].children[0].innerHTML;
+									console.log('Click!');
+									let Data = [];
+									let fields = $('.bug-form').find('.form-control');
+									console.log($('.bug-form').find('.form-control'));
+
+									$(fields).each(
+										(i) =>
+										{
+											console.log('transfer data from: ', $(clicksTable.children[0]).find('td')[i+1]);
+											console.log('into: ',fields[i]);
+
+											$(fields[i]).val(
+												$(clicksTable.children[0]).find('td')[i+1].innerHTML
+											);
+											Data
+												[
+												$(fields[i])
+													.attr( 'placeholder' )
+												]
+												= $(fields[i]).val();
+										});
+									$('[placeholder="id"]').val(idToUpdate);
+									console.log('tracked id', idToUpdate);
+									resolve();
+								});
+						}
+					);
+
+				}
 			}
+
+
 
 	)
 

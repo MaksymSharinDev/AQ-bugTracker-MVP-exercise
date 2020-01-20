@@ -19,8 +19,9 @@
 
 
 
-<div class="container">
+<div class="container ">
         <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+    <div class="bug-form">
         <div class="row">
             <div class="col-12 col-md-8">
                 <input class="form-control form-control-lg" type="text" placeholder="title">
@@ -29,7 +30,7 @@
                 <input class="form-control form-control-lg" type="text" placeholder="date">
             </div>
         </div>
-    <div style="height: 5px;"></div>
+        <div style="height: 5px;"></div>
         <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
         <div class="row">
             <div class="col-6 col-md-4">
@@ -42,7 +43,7 @@
                 <input class="form-control form-control-lg" type="text" placeholder="severity">
             </div>
         </div>
-    <div style="height: 5px;"></div>
+        <div style="height: 5px;"></div>
         <!-- Columns are always 50% wide, on mobile and desktop -->
         <div class="row">
             <div class="col-6">
@@ -52,6 +53,7 @@
                 <input class="form-control form-control-lg" type="text" placeholder="actual result">
             </div>
         </div>
+    </div>
 
         <div style="height: 10px;"></div>
 
