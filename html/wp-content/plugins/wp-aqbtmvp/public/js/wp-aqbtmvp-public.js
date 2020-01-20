@@ -32,36 +32,38 @@
 	$( document ).ready(
 		()=>
 			{
+				var AlreadyOnPageID = [];
 				pageIO();
 
-				function pageIO( AlreadyOnPageID = [] )
+				function pageIO(  )
 				{
 					console.log('IO start: ');
-					readDBdata(AlreadyOnPageID).then(
+					readDBdata().then(
 						(readData)=>
 						{
 							genTable(readData.dbRows );
 							Promise.race([
-									insertBugWaitClick ( readData.AlreadyOnPageID ) ,
+									insertBugWaitClick (  ) ,
 
-									deleteBugWaitClick( readData.AlreadyOnPageID )
+									deleteBugWaitClick(  )
 									.then(
 										(obj)=>
 										{
-											deleteDBdata(obj.idToDelete , obj.AlreadyOnPageID)
+											deleteDBdata(obj.idToDelete )
 											.then(
-												(idToDelete,AlreadyOnPageID)=>
+												(idToDelete)=>
 												{
 													removeRecord(obj.nodeToDelete).then(
-														() => {return new Promise(resolve => resolve(AlreadyOnPageID))}
+														() => {return new Promise(resolve => resolve())}
 													);
 												}
 											)
 											.catch(
-												(Exc,AlreadyOnPageID) => {
+												(Exc) => {
 													console.log(Exc);
+													removeRecord(obj.nodeToDelete);
 													return new Promise(
-														resolve => resolve(AlreadyOnPageID)
+														resolve => resolve()
 													);
 												}
 											);
@@ -69,20 +71,20 @@
 									)
 							])
 							.then(
-							(AlreadyOnPageID) =>
+							() =>
 							{
 								console.log('start another: ', pageIO);
 								$("body").find("*").each(function() {
 									$(this).off("click");
 								});
-								pageIO(AlreadyOnPageID);
+								pageIO();
 							});
 						}
 
 					);
 
 				}
-				function readDBdata( AlreadyOnPageID )
+				function readDBdata(  )
 				{
 					console.log('start rDB function');
 					return new Promise(
@@ -107,7 +109,6 @@
 									console.log('DB resolution...');
 									resolve(
 										{
-											AlreadyOnPageID : AlreadyOnPageID,
 											dbRows : dbRows
 										}
 										);
@@ -152,7 +153,7 @@
 					$('#newElement').removeAttr('id');
 					console.log('bug placing end');
 				}
-				function insertBugWaitClick( AlreadyOnPageID )
+				function insertBugWaitClick(  )
 				{
 					return new Promise(
 						(resolve)=>
@@ -183,7 +184,7 @@
 										() =>
 										{
 											$('#send-bug').off('click');
-											resolve(AlreadyOnPageID);
+											resolve();
 										}
 									);
 								});
@@ -193,7 +194,7 @@
 					);
 
 				}
-				function deleteBugWaitClick( AlreadyOnPageID )
+				function deleteBugWaitClick(  )
 				{
 					return new Promise(
 						(resolve)=>
@@ -222,7 +223,6 @@
 												console.log( 'Delete End' );
 												console.log( 'node to pass ', clicksTable );
 												resolve({
-													'AlreadyOnPageID': AlreadyOnPageID ,
 													'idToDelete' : idToDelete,
 													'nodeToDelete' : clicksTable}
 													);
@@ -234,7 +234,7 @@
 							});
 						});
 				}
-				function deleteDBdata(idToDelete,AlreadyOnPageID)
+				function deleteDBdata(idToDelete)
 				{
 					return new Promise(
 						(resolve,reject)=>
@@ -254,12 +254,12 @@
 										&& nrows > 0
 									)
 									{
-										resolve(idToDelete , AlreadyOnPageID);
+										resolve(idToDelete , );
 									}
 									else
 									{
 										console.log('record to delete not present in the DB');
-										reject(AlreadyOnPageID );
+										reject( );
 									}
 								}
 							);
