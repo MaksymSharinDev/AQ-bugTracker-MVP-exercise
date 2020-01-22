@@ -16,6 +16,7 @@ html/*
 # track docker compose
 !docker-compose.yml
 
+!stateOfArt
 
 # Ignore everything in the "wp-content" directory, except the "plugins"
 # and "themes" directories.
@@ -26,7 +27,6 @@ html/wp-content/*
 # Ignore everything in the "plugins" directory, except the plugins you
 # specify (see the commented-out examples for hints on how to do this.)
 html/wp-content/plugins/*
-!html/wp-content/plugins/plugin-name/
 !html/wp-content/plugins/wp-mvc/
 !html/wp-content/plugins/wp-aqbtmvp/
 !html/wp-content/plugins/relative-url/
@@ -36,5 +36,5 @@ html/wp-content/plugins/*
 # Ignore everything in the "themes" directory, except the themes you
 # specify (see the commented-out example for a hint on how to do this.)
 html/wp-content/themes/*
-!html/wp-content/themes/wp-bootstrap-starter/
+!html/wp-content/themes/wp-bootstrap-aqbtmvp/
 # !html/wp-content/themes/my-theme/

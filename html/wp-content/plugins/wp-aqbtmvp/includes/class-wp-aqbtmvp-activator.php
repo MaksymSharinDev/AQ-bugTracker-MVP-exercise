@@ -32,6 +32,7 @@ class Wp_Aqbtmvp_Activator {
 	public static function activate() {
 
 		global $table_prefix, $wpdb;
+		require_once( ABSPATH . '/wp-admin/includes/upgrade.php' );
 
 		$tblname        = 'bugs';
 		$wp_track_table = $table_prefix . "$tblname ";
@@ -52,8 +53,29 @@ class Wp_Aqbtmvp_Activator {
 			$sql .= "  PRIMARY KEY bug_id (id) ";
 			$sql .= ") ";
 			$sql .= "ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
-			require_once( ABSPATH . '/wp-admin/includes/upgrade.php' );
+
 			dbDelta( $sql );
+
+			#Check to see if the table exists already, if not, then create it
+			//TODO
+			//develop table for files-bug relation
+			/*
+			$tblname        = 'attachments';
+			$wp_track_table = $table_prefix . "$tblname ";
+			$sql = '';
+			if ( $wpdb->get_var( "show tables like '$wp_track_table'" ) != $wp_track_table ) {
+				//id,title,date,device,replicability,severity,expected_result,actual_result
+				$sql  = "  CREATE TABLE " . $wp_track_table . " ( ";
+				$sql .= "  id  int(11)   NOT NULL auto_increment, ";
+				$sql .= "  bug_id  int(11)   NOT NULL, ";
+				$sql .= "  PRIMARY KEY bug_id (id) ";
+				$sql .= ") ";
+				$sql .= "ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
+
+				dbDelta( $sql );
+			*/
+
+
 		}
 
 	}

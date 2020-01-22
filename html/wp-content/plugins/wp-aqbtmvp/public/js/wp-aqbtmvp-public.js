@@ -88,6 +88,7 @@
 					);
 
 				}
+
 				function readDBdata( )
 				{
 					console.log('start rDB function');
@@ -157,6 +158,7 @@
 					$('#newElement').removeAttr('id');
 					console.log('bug placing end');
 				}
+
 				function insertBugWaitClick(  )
 				{
 					return new Promise(
