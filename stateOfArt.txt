@@ -1,0 +1,47 @@
+il plugin è ancora sprovvisto della funzione di disinstallazione (Table remove)
+
+Il plugin mette a disposizione
+-un short code il quale posizionato provvede a posizionare il template public
+-un entry nel menu administrativo (ancora sprovvisto di varie ed eventuali impostazioni
+
+il meccanismo di funzionamento di questo plugin è esteso a partire dal flow determinato dal boilerplate
+- wp-aqbtmvp /wp-aqbtmvp.php
+    main script inerente attivazione/deattivazione ed esecuzione
+- includes/class-wp-aqbtmvp.php
+    classe con responsabilità di inizializzazione
+    carica tutte le classi nella folder includes/
+    si occupa (tramite la classe includes/class-wp-aqbtmvp-loader.php )
+    di aggiungere azioni ai hook administrativi e pubblici
+
+in define_public_hooks()
+    vengono caricati script, fogli di stile
+    lo shortcode
+    e le funzioni che rispondono al CRUD del public template
+
+in public/class-wp-aqbtmvp-public.php
+    -è presente la funzione che rende visibile il template public
+    -sono presenti le funzioni che si occupano di fare chiamate al database
+    le 4 funzioni non sono stadardizzate tra loro
+
+partials/wp-aqbtmvp-public-display.php
+    -il tema è il bootstrap starter, percio le classi sono inerenti la documentazione di bootstrap 4
+    -viene aggiunto uno script per rendere possibile il funzionamento delle chiamate AJAX
+    (cannarozzo mi ha riferito che era il metodo sbagliato per rendere disponibile l'ajaxurl (oltre ad altre variabili)
+    quindi indicare lo standard
+    - .bug-form e #bugList sono i css selector importanti per permettere al javascript di orientarsi nel dom
+    -c'e un record con l'attributo hidden usato dallo script per replicare e popolare l'UI
+
+in public/js/wp-aqbtmvp-public.js
+    -il codice contiene la navigazione nel DOM piuttosto harcodeded
+    -è una promise-chain ricorsiva
+    -il trend/pattern delle responsabilità delle funzioni è
+        -[eventListener]
+        -[AXAJ call]
+        -[DOMupdate]
+    -le altre poche funzioni sono di utilità / responsabilità piu granulare
+    -contiene due variabili globali per evitare code duplication e confusionari passaggi di parametri nelle promises
+    -servono a tenere lo stato dei dati gia presenti nel client
+    -sono presenti molti console.log per verificare il corretto funzionamento del flow
+
+
+
