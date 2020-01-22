@@ -43,5 +43,131 @@ in public/js/wp-aqbtmvp-public.js
     -servono a tenere lo stato dei dati gia presenti nel client
     -sono presenti molti console.log per verificare il corretto funzionamento del flow
 
+    Ale's review
+
+    -usare le feature del HTML5; (name type required attr)
+    -usare form con submit/button
+
+    -mettere l'attributo "name" ai nodi DOM, anche per motivi di SEO (?)
+    -in caso di select multiple (UI)  (quindi il valore mandato è un array) il name = nome[]
+    -assegnare il type giusti nei input
+
+    -evitare ricorsione o andarci piano
+    -naming piu specifici
+    (che professione ha? a cosa serve?)
+    4word as function name
+    quando riempire: populare
+    get,update/save/put
+
+    l'hidden va bene per picoli elementi
+    se è grande usare microtemplating ---> gogglaaa [https://johnresig.com/blog/javascript-micro-templating/]
+    con i {atribute}
+
+    naming
+    ex: getBugsForTable
+    ex: generateTableForBug
+    ex: pageInit
+
+    console.log() molto di rado per cose importanti mai esporre cose al asshole hahaha
+    per php si usa l'error log stampa nei log del server e a volte anche mandare l'email
+    ex: utente gia registrato -> logga con FB -> allert email
+
+
+    standard #1
+
+    //funzioni come argomenti
+    ( ) => { }
+
+    (function () {
+    })();
+
+    yes
+    function(){
+    //...
+    }
+
+    standard #2
+    //chiamate ajax
+    handling errori nelle richieste ajax
+    disabilitare L'ui durante la richiesta
+    riabilitarla dopo successo/errore
+    eventuali UI si usano solo se è un endpoint per esseri umani
+    example: https://pastebin.com/ytbJ27zW
+
+    #standard #3
+    NO promise
+    Yes Events
+
+    event-driven
+    on('event', function(){
+
+    });
+
+    standard #4
+    $_POST  non usare il coltello per mangiare
+
+    standard #5
+    controllare sempre i dati con
+    -empty(lo 0 non puo essere valore se vuoi usarlo) [vuoto, nullo o 0] --> return true quindi vuoto
+    preferisci isset ---> return true quando è settato
+
+    standard #6
+    per codificare la codifica e l'invio di roba dal Db o dati del backend elaborati devo rispettare questo
+    way of do:
+
+    echo json_encode(array('success' => false, 'message' => "{errorMsg}"));
+    OR
+    wp_send_json_success();
+    wp_send_json_error(array("error_msg" => $result_message));
+
+    e finire con
+
+    die();
+
+    standard #7
+    salvare i risultati del DB
+    e in base al
+    $res
+    selezionare cio che è errore e cio che è successo
+
+    oppure
+    $messaggioTestuale = $wbdb->last_error();  //non far vedere all'utente
+    serve a controlare se è stato un errore
+
+    gerarchia $res > lastError
+
+    standard #8
+    usare wpdb->prepare($string) //data sanitization
+
+    standard #9
+    usare i nouce : wp_create_nonce( 'say-hello' );
+    usarlo come attributo name di un campo html
+    snippet: <input type="hidden" value="wp_create_nonce('chiave')">
+
+    e nel backend
+    wp_verify_nonce( $nonce, 'say-hello' )
+
+
+- completamento esercizio, come se dovesse andare in produzione, con:
+	upload e visualizzazione di file in locale
+        upload e visualizzazione di file da AWS (creazione account AWS e utilizzo storage, con salvataggio URL sul db)
+        aggiunta controlli sui campi, sia HTML (type, ....),
+            Jquery (utilizo di regex tramite .test, .search),
+            PHP (https://www.php.net/manual/en/function.preg-match.php) controlli sulle tipologie
+            (il titolo deve rispettare il formato [{qualcosa}] - {qualcos'altro},
+            oppure Tester id del tipo {T}{numero})
+	inserimento della gestione degli errori in tutto lo stack (dall'html con i required, al jquery, al php)
+	utilizzo del nonce nel front-end e controllo nel back-end
+	utilizzo di select multiple, con valori inseriti nel db con separatore (usare implode/explode nel backend)
+	provare a usare in sostituzione della creazione delle tr tramite append() https://johnresig.com/blog/javascript-micro-templating/
+	gestire i campi del db del data-type
+	controlli del tipo (le date sono effettivamente date?)
+	espandi i campi (select, checkbox, radio)
+	avanti, indietro, entrare nelle funzioni, con xdebug, evaluate expression
+	gestione eventi- piccolo check
+
+
+
+
 
 

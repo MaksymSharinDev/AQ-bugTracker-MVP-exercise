@@ -112,16 +112,17 @@ class Wp_Aqbtmvp_Public {
 		//id,date,device,replicability,severity,expected_result,actual_result
 			$data = array();
 
-			foreach( $_REQUEST as $key => $value)
+			//quando rispetti l'ajax standard di AQ l'action è tolta dalla fonte
+			foreach( $_REQUEST as $key => $value) //metti il post
 			{
 				$key = str_replace(' ', '_', $key);
 				$key = strtolower ($key);
 				$data[$key]=$value;
 			}
-			unset($data['action']);
-			unset($data['id']);
+			unset($data['action']); //togli
+			unset($data['id']); //togli
 			global $wpdb;
-				$wpdb->insert($wpdb->prefix  . "bugs", $data );
+			$res=$wpdb->insert($wpdb->prefix  . "bugs", $data );
 				wp_send_json(json_encode($data));
 	}
 	public function  get_bugs()
@@ -129,6 +130,7 @@ class Wp_Aqbtmvp_Public {
 
 		global $wpdb;
 		$table=$wpdb->prefix."bugs";
+
 		$sqlString = "SELECT * FROM " . $table;
 		$Array= $_REQUEST['AlreadyOnPageID'];
 		if ( isset($Array) && count($Array) > 0  )
@@ -153,8 +155,7 @@ class Wp_Aqbtmvp_Public {
 	}
 	public function delete_bug(){
 		global $wpdb;
-		$nrows =
-		$wpdb->delete( $wpdb->prefix . "bugs" , array( 'ID' => $_REQUEST['id']) );
+		$nrows = $wpdb->delete( $wpdb->prefix . "bugs" , array( 'ID' => $_REQUEST['id']) );
 
 		wp_send_json(
 			json_encode(

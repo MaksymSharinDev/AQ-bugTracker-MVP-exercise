@@ -32,13 +32,15 @@
 	$( document ).ready(
 		()=>
 			{
+				//TODO
+				//
 				var AlreadyOnPageID = [];
 				var idToUpdate;
 				pageIO();
+
 				function pageIO( )
 				{
 					console.log('IO start: ');
-
 					readDBdata().then(
 						(readData)=>
 						{
@@ -84,7 +86,6 @@
 								pageIO();
 							});
 						}
-
 					);
 
 				}
@@ -115,6 +116,7 @@
 									resolve(
 										{
 											dbRows : dbRows
+
 										}
 										);
 								});
