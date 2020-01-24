@@ -63,11 +63,11 @@
 				console.log(template);
 				dataArray.forEach(
 					function ( current, i) {
-
+						$(template).find('[name=' + current.name + ']').attr('value' , current.value )
 					}
 				);
 				console.log(
-					$(template).find('[type="submit" ][value="send"]')
+					$(template).find('[type="submit" ]')
 				);
 				$(template).find('[type="submit" ][value="Send"]').parent().attr('hidden','');
 				$(template).find('[type="submit" ][value="Edit"]').parent().removeAttr('hidden');
