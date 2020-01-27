@@ -34,18 +34,7 @@
                         <script>
                             (function( $ ) {
                                 'use strict';
-                                $('form').data('forms',{});
-                                $('form').submit(
-                                    function (e) {
-                                        e.preventDefault();
-                                        let form = this;
-                                        let obj =  $(form).data('forms');
-                                        obj[ (new Date()).getTime() ] = $(form).serializeArray();
-                                        $(form).data('forms', obj);
-                                        console.log( $(form).data('forms') );
 
-                                    }
-                                );
                             })( jQuery );
                         </script>
                         <div class="row p-2">
@@ -159,13 +148,18 @@
                             </div>
                             <div class="col-12 col-md-2 card justify-content-lg-center ">
                                 <div class="row p-2" hidden>
-                                    <input type="submit" class="btn btn-info btn-lg btn-block " value="Edit">
+                                    <input type="button"  class="btn btn-info btn-lg btn-block " value="Edit">
                                 </div>
                                 <div class="row p-2" >
                                     <input type="submit" class="btn btn-primary btn-lg btn-block " value="Send">
+                                    <button class="btn btn-primary btn-lg btn-block" disabled hidden>
+                                        <div class="spinner-border" role="status" >
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </button>
                                 </div>
                                 <div class="row p-2" hidden>
-                                    <input type="submit" class="btn btn-danger btn-lg btn-block " value="Delete">
+                                    <input type="button" class="btn btn-danger btn-lg btn-block " value="Delete">
                                 </div>
                             </div>
                         </div>

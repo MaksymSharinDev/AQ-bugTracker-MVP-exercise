@@ -173,17 +173,20 @@ in public/js/wp-aqbtmvp-public.old.js
 Organizzazione delle iterazioni
 Order by fundamentality, easiness
 
-Goals:
-    set types and type-checking,
-    use tech-specific-features where possible, (even if redundant)
-    error handling
+ALe's monday check 27 01 2020
 
-HTML5
 
-JS
-PHP
-DB
-
+- completamento esercizio, come se dovesse andare in produzione, con:
+	upload, PREVIEW, salvataggio nel db del nome file e recupero tramite visualizzazione di file in locale
+        BOTTONE CHE CLICCATO PRENDE 3 campi ($(button).on("click", function...) -> ajax -> gestione errori corretta success: if (data.success === true...) else ..., e in PHP controlli sui campi vuoti controlli backend del tipo (le date sono effettivamente date?, isset, empty....), anche con utilizzo di select multiple, con valori inseriti nel db con separatore (usare implode/explode nel backend)...visualizzare il dato
+	gestione eventi
+	aggiunta controlli sui campi Jquery (utilizo di regex tramite .test, .search)
+	aggiunta controlli sui campi PHP (https://www.php.net/manual/en/function.preg-match.php) controlli sulle tipologie in JS (il titolo deve rispettare il formato [{qualcosa}] - {qualcos'altro}, oppure Tester id del tipo {T}{numero})
+	utilizzo del nonce nel front-end e controllo nel back-end
+	gestire i campi del db del data-type corretto
+	avanti, indietro, entrare nelle funzioni, con xdebug, evaluate expression	X -- espandi i campi (select, checkbox, radio)
+	X -- aggiunta controlli sui campi HTML (type, ....)---- upload e visualizzazione di file da AWS (creazione account AWS e utilizzo storage, con salvataggio URL sul db)
+---- provare a usare in sostituzione della creazione delle tr tramite append() https://johnresig.com/blog/javascript-micro-templating/- check 30min Mercoledì pomeriggio + 1h 30 di microtemplating (e aws oppure BRANCHING)
 
 
 
